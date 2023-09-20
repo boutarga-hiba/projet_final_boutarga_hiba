@@ -22,8 +22,10 @@
 <section class="contact-section padding_top">
   <div class="container">
     <div class="d-none d-sm-block mb-5 pb-4">
-      <div id="map" style="height: 480px;"></div>
-      <script>
+      <div id="map" style=""></div>
+
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d106207.68243407739!2d-7.499732202734382!3d33.70920570000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda7b6ff3b391ddd%3A0x59bda15a7ed9fecf!2sKITEA%20MOHAMMEDIA!5e0!3m2!1sfr!2sma!4v1695219391026!5m2!1sfr!2sma" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="d-flex justify-center align-items-center w-100 "></iframe>
+      {{-- <script>
         function initMap() {
           var uluru = {
             lat: -25.363,
@@ -56,7 +58,7 @@
             scrollwheel: false
           });
         }
-      </script>
+      </script> --}}
       <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap">
       </script>

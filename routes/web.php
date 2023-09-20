@@ -3,6 +3,7 @@
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShowController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,13 @@ Route::get('/', function () {
 
 // & Route de contact
 Route::get("/contact",[ContactController::class,"index"])->name("contact.index");
+
+// ! Route home
+Route::get("/home",[HomeController::class,"index"])->name("home.index");
+
+// ! Route shop
+Route::get("/shop",[ShowController::class,"index"])->name("shop.index");
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
