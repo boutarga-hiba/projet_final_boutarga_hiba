@@ -25,10 +25,7 @@
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
 
-
-
 </head>
-
 
     <!--::header part start::-->
     <header class="main_menu home_menu">
@@ -49,15 +46,14 @@
                                     <a class="nav-link" href={{route("home.index")}}>Home</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_1"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a class="nav-link " href={{route("shop.index")}} id="navbarDropdown_1"
+                                        role="button"  aria-haspopup="true" aria-expanded="false">
                                         Shop
                                     </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
+                                    {{-- <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
                                         <a class="dropdown-item" href={{route("shop.index")}}> shop category</a>
                                         {{-- <a class="dropdown-item" href="single-product.html">product details</a> --}}
-
-                                    </div>
+                                    {{-- </div>  --}}
                                 </li>
 
 
@@ -70,18 +66,25 @@
                         <div class="hearer_icon d-flex">
                             {{-- <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a> --}}
                             <a href=""><i class="ti-heart"></i></a>
-                            <div class="dropdown cart">
-                                <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button"
+                            <a href="{{route("panier.index")}}"><i class="fas fa-cart-plus"></i>
+                            </a>
+                            {{-- <div class="dropdown cart">
+                                <a class="dropdown-toggle" href="{{route("panier.index")}}" id="navbarDropdown3" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-cart-plus"></i>
                                 </a>
+
                                 <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <div class="single_product">
 
                                     </div>
-                                </div> -->
+                                </div> --> --}}
 
                             </div>
+
+                            <a href={{route("login")}}>
+                                <i class="fa-solid fa-circle-user"></i></a>
+
                         </div>
                     </nav>
                 </div>
@@ -104,10 +107,21 @@
     {{-- contact --}}
     @yield('contact')
 
-  {{-- show --}}
+  {{-- shop --}}
   @yield('shop')
-    <!-- Header part end-->
 
+  {{-- show --}}
+  @yield('show')
+
+  {{-- panier --}}
+  @yield('panier')
+
+  {{-- login --}}
+  @yield('login')
+
+  {{-- register --}}
+  @yield('register')
+    <!-- Header part end-->
 
         <!--::footer_part start::-->
         <footer class="footer_part">

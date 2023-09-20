@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PanierController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ShowController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,11 +27,19 @@ Route::get('/', function () {
 Route::get("/contact",[ContactController::class,"index"])->name("contact.index");
 
 // ! Route home
-Route::get("/home",[HomeController::class,"index"])->name("home.index");
+Route::get("/",[HomeController::class,"index"])->name("home.index");
 
 // ! Route shop
-Route::get("/shop",[ShowController::class,"index"])->name("shop.index");
+Route::get("/shop",[ShopController::class,"index"])->name("shop.index");
 
+// !Route show
+Route::get("/show",[ShowController::class,"index"])->name("show.index");
+
+// ! Route panier
+Route::get("/panier",[PanierController::class,"index"])->name("panier.index");
+
+// ! Route login
+// Route::get("/login",[login])
 
 Route::get('/dashboard', function () {
     return view('dashboard');

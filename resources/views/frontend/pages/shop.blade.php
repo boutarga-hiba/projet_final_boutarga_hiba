@@ -68,7 +68,7 @@
                                         <a href="#">Fresh Fish</a>
                                         <span>(250)</span>
                                     </li>
-                                    <li>
+                                    {{-- <li>
                                         <a href="#">Meat Alternatives</a>
                                         <span>(250)</span>
                                     </li>
@@ -83,12 +83,12 @@
                                     <li>
                                         <a href="#">Meat</a>
                                         <span>(250)</span>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                         </aside>
 
-                        <aside class="left_widgets p_filter_widgets">
+                        {{-- <aside class="left_widgets p_filter_widgets">
                             <div class="l_w_title">
                                 <h3>Product filters</h3>
                             </div>
@@ -175,7 +175,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </aside>
+                        </aside> --}}
                     </div>
                 </div>
                 <div class="col-lg-9">
