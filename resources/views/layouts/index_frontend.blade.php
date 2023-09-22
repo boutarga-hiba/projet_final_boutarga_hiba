@@ -1,7 +1,6 @@
 
 <!doctype html>
 <html lang="zxx">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -9,22 +8,26 @@
     <title>aranoz</title>
     <link rel="icon" href="img/favicon.png">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <!-- animate CSS -->
-    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <!-- owl carousel CSS -->
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/lightslider.min.css') }}">
     <!-- font awesome CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <!-- flaticon CSS -->
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/themify-icons.css">
+    <link rel="stylesheet" href="{{ asset('css/all.css') }}">
+    <!-- flaticon CSS -->
+    <link rel="stylesheet" href="{{ asset('css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}">
     <!-- font awesome CSS -->
-    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
     <!-- swiper CSS -->
-    <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="{{ asset('css/slick.css') }}">
     <!-- style CSS -->
-    <link rel="stylesheet" href="css/style.css">
-
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {{-- style select --}}
+    <link rel="stylesheet" href="{{ asset('css/nice-select.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
     <!--::header part start::-->
@@ -33,7 +36,10 @@
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href={{route("home.index")}}> <img src="img/logo.png" alt="logo"> </a>
+                        <a class="navbar-brand" href={{route("home.index")}}>
+                            <img src="{{ asset('storage/img/logo.png') }}" alt="logo">
+
+                        </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -68,22 +74,28 @@
                             <a href=""><i class="ti-heart"></i></a>
                             <a href="{{route("panier.index")}}"><i class="fas fa-cart-plus"></i>
                             </a>
-                            {{-- <div class="dropdown cart">
-                                <a class="dropdown-toggle" href="{{route("panier.index")}}" id="navbarDropdown3" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-cart-plus"></i>
+
+                            {{-- @if (!auth()->user())
+                            <a href="{{ route('login') }}"><i class="ti-user"></i></a>
+                        @else
+                            <a href="{{ route("profile.edit") }}"><i class="ti-user text-success"></i></a>
+                        @endif --}}
+
+                        @auth
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <a class="text-dark" :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                    <i class="text-danger ti-power-off"></i>
                                 </a>
-
-                                <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <div class="single_product">
-
-                                    </div>
-                                </div> --> --}}
-
+                            </form>
+                        @endauth
                             </div>
 
                             <a href={{route("login")}}>
-                                <i class="fa-solid fa-circle-user"></i></a>
+                                <i class="fa-solid fa-user"></i>
+                            </a>
 
                         </div>
                     </nav>
@@ -121,6 +133,9 @@
 
   {{-- register --}}
   @yield('register')
+
+  {{-- mail --}}
+  @yield('mail')
     <!-- Header part end-->
 
         <!--::footer_part start::-->
@@ -177,16 +192,16 @@
                             <p>Heaven fruitful doesn't over lesser in days. Appear creeping
                             </p>
                             <div id="mc_embed_signup">
-                                <form target="_blank"
-                                    action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                                    method="get" class="subscribe_form relative mail_part">
+                                <form action="{{ route('envoiEmail') }}" method="POST" class="subscribe_form relative mail_part">
+                                    @csrf
                                     <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
-                                        class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
-                                        onblur="this.placeholder = ' Email Address '">
-                                    <button type="submit" name="submit" id="newsletter-submit"
+                                        class="placeholder hide-on-focus" required>
+                                    <button type="submit"
                                         class="email_icon newsletter-submit button-contactForm">subscribe</button>
                                     <div class="mt-10 info"></div>
                                 </form>
+
+
                             </div>
                         </div>
                     </div>
@@ -220,28 +235,33 @@
         <!--::footer_part end::-->
 
         <!-- jquery plugins here-->
-        <script src="js/jquery-1.12.1.min.js"></script>
+        <script src="{{ asset('js/jquery-1.12.1.min.js') }}"></script>
         <!-- popper js -->
-        <script src="js/popper.min.js"></script>
+        <script src="{{ asset('js/popper.min.js') }}"></script>
         <!-- bootstrap js -->
-        <script src="js/bootstrap.min.js"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
         <!-- easing js -->
-        <script src="js/jquery.magnific-popup.js"></script>
+        <script src="{{ asset('js/jquery.magnific-popup.js') }}"></script>
         <!-- swiper js -->
-        <script src="js/swiper.min.js"></script>
+        <script src="{{ asset('js/lightslider.min.js') }}"></script>
         <!-- swiper js -->
-        <script src="js/masonry.pkgd.js"></script>
+        <script src="{{ asset('js/masonry.pkgd.js') }}"></script>
         <!-- particles js -->
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/jquery.nice-select.min.js"></script>
+        <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
         <!-- slick js -->
-        <script src="js/slick.min.js"></script>
-        <script src="js/jquery.counterup.min.js"></script>
-        <script src="js/waypoints.min.js"></script>
-        <script src="js/contact.js"></script>
-        <script src="js/jquery.ajaxchimp.min.js"></script>
-        <script src="js/jquery.form.js"></script>
-        <script src="js/jquery.validate.min.js"></script>
-        <script src="js/mail-script.js"></script>
+        <script src="{{ asset('js/slick.min.js') }}"></script>
+        <script src="{{ asset('js/swiper.jquery.js') }}"></script>
+        <script src="{{ asset('js/jquery.counterup.min.js') }}"></script>
+        <script src="{{ asset('js/waypoints.min.js') }}"></script>
+        <script src="{{ asset('js/contact.js') }}"></script>
+        <script src="{{ asset('js/jquery.ajaxchimp.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.form.js') }}"></script>
+        <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+        <script src="{{ asset('js/mail-script.js') }}"></script>
+        <script src="{{ asset('js/stellar.js') }}"></script>
+        <!-- custom js -->
+        <script src="{{ asset('js/theme.js') }}"></script>
+        <script src="{{ asset('js/custom.js') }}"></script>
         <!-- custom js -->
         <script src="js/custom.js"></script>
