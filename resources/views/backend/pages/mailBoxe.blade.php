@@ -1,5 +1,5 @@
-@extends('layouts.index_frontend')
-@section('mail')
+@extends('layouts.index_backend')
+@section('product_backend')
 
 <!-- resources/views/welcome.blade.php -->
 <!DOCTYPE html>
@@ -36,29 +36,37 @@
     <br>
     <br><br><br>
 
-    <table class="table mt-5  ">
-        <thead align="middle">
-            <tr>
-                <th scope="col"></th>
-                <th scope="col">from</th>
-                <th scope="col">subject</th>
-                <th scope="col">email</th>
-                <th scope="col">descrption</th>
-            </tr>
+    <table class="table container">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Subject</th>
+            <th scope="col"> Email Address</th>
+            <th scope="col"> Show Message</th>
+
+          </tr>
         </thead>
-        <tbody align="middle">
-            @foreach ($emails as $key => $email )
-                <tr>
-                <th scope="row">{{$key + 1}}</th>
-                <td>{{$email->name}}</td>
-                <td>{{$email->subject}}</td>
-                <td>{{$email->email}}</td>
-                <td>@include("backend.components.mailBox.show")</td>
+        <tbody >
+            @foreach ($emails as $key=> $email)
+            <tr>
+              <th scope="row">{{$key+1}}</th>
+              <td>{{ $email->name }}</td>
+              <td>{{ $email->subject }}</td>
+              <td>{{ $email->email }}</td>
+              <td>
+                {{$email->message}}
+              </td>
+
             </tr>
+
             @endforeach
 
         </tbody>
-    </table>
+      </table>
+
+
+
     <!-- jquery plugins here-->
     <script src="{{ asset('js/jquery-1.12.1.min.js') }}"></script>
     <!-- popper js -->

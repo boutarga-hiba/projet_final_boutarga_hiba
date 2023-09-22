@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\MailController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InfoController;
 use App\Http\Controllers\PanierController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -38,6 +39,11 @@ Route::get("/",[HomeController::class,"index"])->name("home.index");
 
 // !Product
 Route::get("/show/{product}",[ProductController::class,"show"])->name("product.show");
+Route::delete("/products/delete/{product}", [ProductController::class, "destroy"])->name("product.destroy");
+Route::put("/products/update/{product}", [ProductController::class, "update"])->name("product.update");
+Route::post("/products/store", [ProductController::class, "store"])->name("product.store");
+
+
 // ! Route shop
 Route::get("/shop", [ShopController::class, "index"])->name("shop.index");
 Route::get('shop/category/{categoryId}', 'ShopController@showCategory')->name('shop.category');
@@ -60,6 +66,9 @@ Route::middleware('auth')->group(function () {
 //& Route mailbox
 Route::post("/backend/store/mailbox",[MailController::class,"store"])->name("mailbox.store");
 
+// *
+Route::get("/backend/emails",[MailController::class,"index"])->name("mail.index");
+
 // * subscribbe
 Route::post("/envoiEmail" , [HomeController::class , 'envoiEmail'])->name("envoiEmail");
 
@@ -75,7 +84,17 @@ require __DIR__.'/auth.php';
 route::middleware('auth','role:admin')->group(
 
     function(){
-        Route::get("/product/backend",[ProductController::class,"index"])->name("product_back.index");
+        // Route::get("/product/backend",[ProductController::class,"index"])->name("product_back.index");
+        Route::get("/products/admin", [ProductController::class, "admin"])->name("product.admin");
 
     }
 );
+
+// *Route Infos Contact
+Route::get('/back/info',[InfoController::class , 'index'])->name("info.index");
+Route::put('/back/info/{info}',[InfoController::class , 'update'])->name("info.update");
+// & MailBox
+
+
+
+

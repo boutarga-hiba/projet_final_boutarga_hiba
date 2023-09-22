@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('infos', function (Blueprint $table) {
             $table->id();
-            $table->string("adresse");
-            $table->string("tel");
+            $table->string("ville");
+            $table->string("adrs");
+            $table->string("phone");
+            $table->string("emploi");
             $table->string("email");
+            $table->string("title");
             $table->timestamps();
         });
     }

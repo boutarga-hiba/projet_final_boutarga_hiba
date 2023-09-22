@@ -9,8 +9,11 @@ class Info extends Model
 {
     use HasFactory;
     protected $fillable=[
-        "adresse",
-        "tel",
-        "email"
+        "ville",
+        "adrs",
+        "phone",
+        "emploi",
+        "email",
+        "title"
     ];
 }

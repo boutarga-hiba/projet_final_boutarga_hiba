@@ -19,6 +19,7 @@ class MailController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
             "message" => "required",
             "name" => "required",
@@ -33,6 +34,7 @@ class MailController extends Controller
             "subject" => $request->subject
         ]);
 
+        dd($request);
         $DemoMail=([
             "message" => $request->message,
             "name" => $request->name,
